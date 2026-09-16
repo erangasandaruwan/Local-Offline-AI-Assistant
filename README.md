@@ -55,34 +55,8 @@ This project attempts to answer that question through systematic benchmarking an
 
 The initial architecture is:
 
-```text
-User
- │
- ▼
-React / Angular
- │
- ▼
-ASP.NET Core Web API
- │
- ▼
-FastAPI Local AI Service
- │
- ├── Prompt Management
- ├── Structured Output
- ├── Pydantic Validation
- ├── Retry Handling
- └── Benchmark Collection
- │
- ▼
-Ollama
- │
- ├── Model A
- ├── Model B
- └── Model C
- │
- ▼
-Local CPU / GPU
-```
+<img width="1221" height="1289" alt="image" src="https://github.com/user-attachments/assets/983120f4-57ec-4547-970a-b94a9025fca4" />
+
 
 The entire LLM inference pipeline can operate without calling an external AI API.
 
@@ -133,21 +107,8 @@ ollama run llama3.2:3b
 
 The interaction becomes:
 
-```text
-User Prompt
-     │
-     ▼
-Local Application
-     │
-     ▼
-Ollama
-     │
-     ▼
-Local LLM
-     │
-     ▼
-Response
-```
+<img width="1220" height="1289" alt="image" src="https://github.com/user-attachments/assets/5b4c0367-126a-4a7d-bba6-968057b805f6" />
+
 
 At this stage, everything can run on the developer's machine.
 
