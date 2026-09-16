@@ -813,6 +813,172 @@ The final implementation can evolve toward:
 
 ---
 
+# Accessing the Local Model Programmatically
+
+Running a model through the terminal is useful for initial experimentation, but applications need a programmatic way to interact with the model.
+
+Fortunately, **Ollama already provides a REST API** for interacting with locally hosted models. Therefore, a separate API wrapper such as FastAPI is **not required simply to call the LLM**.
+
+The basic architecture can be:
+
+```text
+Application
+     │
+     ▼
+Ollama REST API
+     │
+     ▼
+Local Model
+     │
+     ▼
+CPU / GPU
+```
+
+For example, an application can communicate directly with Ollama using its local API endpoint.
+
+```bash
+curl http://localhost:11434/api/chat \
+  -d '{
+    "model": "llama3.2:3b",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Explain the difference between authentication and authorization."
+      }
+    ]
+  }'
+```
+
+This means a frontend, .NET application, Python application, CLI tool, or another local service can communicate with Ollama programmatically.
+
+## Why Introduce FastAPI?
+
+Although Ollama already provides the model API, exposing Ollama directly to the application may not provide all the capabilities required by a production system.
+
+A dedicated **Local AI Service** can therefore be introduced as an application layer:
+
+```text
+Application
+     │
+     ▼
+Local AI Service
+   FastAPI
+     │
+     ├── Prompt Management
+     ├── JSON Schema Enforcement
+     ├── Pydantic Validation
+     ├── Retry Handling
+     ├── Model Selection
+     ├── Benchmark Collection
+     ├── Logging
+     └── OpenTelemetry
+     │
+     ▼
+Ollama REST API
+     │
+     ▼
+Local LLM
+     │
+     ▼
+CPU / GPU
+```
+
+In this architecture, the responsibilities are clearly separated.
+
+**Ollama** is responsible for:
+
+```text
+Model Management
+      +
+Model Loading
+      +
+Local Inference
+      +
+Model API
+```
+
+while the **Local AI Service** is responsible for:
+
+```text
+Application Logic
+      +
+Prompt Engineering
+      +
+Structured Output
+      +
+Validation
+      +
+Retry / Recovery
+      +
+Benchmarking
+      +
+Observability
+```
+
+This distinction is important.
+
+FastAPI is therefore **not being introduced because Ollama lacks an API**. It is introduced to create an application-specific AI orchestration and reliability layer around the Ollama API.
+
+## Alternative: ASP.NET Core Directly to Ollama
+
+If the application is primarily built using .NET, another valid architecture is to avoid FastAPI completely:
+
+```text
+React / Angular
+       │
+       ▼
+ASP.NET Core Web API
+       │
+       ├── Prompt Management
+       ├── JSON Validation
+       ├── Retry Handling
+       ├── Benchmarking
+       └── OpenTelemetry
+       │
+       ▼
+Ollama REST API
+       │
+       ▼
+Local LLM
+       │
+       ▼
+CPU / GPU
+```
+
+This can be a simpler architecture when Python-specific AI libraries are not required.
+
+However, introducing FastAPI can become useful when the AI layer needs access to the broader Python AI ecosystem.
+
+The architectural decision therefore becomes:
+
+```text
+Simple Local AI Application
+        │
+        ▼
+Application → Ollama API
+```
+
+versus:
+
+```text
+Production AI Application
+        │
+        ▼
+Application
+        │
+        ▼
+AI Orchestration Layer
+        │
+        ▼
+Ollama API
+        │
+        ▼
+Local Model
+```
+
+The second approach provides a dedicated boundary where reliability, validation, evaluation, observability, and model-management concerns can evolve independently from the main application.
+
+
 # What This Project Demonstrates
 
 This project goes beyond simply running an open-source LLM on a laptop.
