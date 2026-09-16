@@ -730,47 +730,8 @@ Local-Offline-AI-Assistant/
 
 The final implementation can evolve toward:
 
-```text
-                    User
-                      │
-                      ▼
-                React / Angular
-                      │
-                      ▼
-              ASP.NET Core API
-                      │
-                      ▼
-              Local AI Gateway
-                FastAPI
-                      │
-        ┌─────────────┼─────────────┐
-        │             │             │
-        ▼             ▼             ▼
- Prompt Manager   Validation    Observability
-                      │
-                      ▼
-                 Retry Policy
-                      │
-                      ▼
-                    Ollama
-                      │
-          ┌───────────┼───────────┐
-          ▼           ▼           ▼
-       Model A     Model B     Model C
-          │           │           │
-          └───────────┼───────────┘
-                      ▼
-                 CPU / GPU
-                      │
-                      ▼
-              Benchmark Engine
-                      │
-                      ▼
-                Evaluation
-                      │
-                      ▼
-               Technical Report
-```
+<img width="1024" height="1536" alt="image" src="https://github.com/user-attachments/assets/a6fce7d3-56a0-438c-8e5e-bf08ca101299" />
+
 
 ---
 
