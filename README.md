@@ -120,21 +120,8 @@ Running a model through a terminal is useful for experimentation, but production
 
 A lightweight **FastAPI** service can therefore sit between the application and Ollama.
 
-```text
-Client
-   │
-   ▼
-POST /api/chat
-   │
-   ▼
-FastAPI
-   │
-   ▼
-Ollama
-   │
-   ▼
-Local Model
-```
+<img width="850" height="832" alt="image" src="https://github.com/user-attachments/assets/f6ed34ea-a078-4b87-aaa7-a0a45fb1d0d8" />
+
 
 A request could look like:
 
