@@ -309,22 +309,8 @@ class ClassificationResult(BaseModel):
 
 The processing pipeline becomes:
 
-```text
-Prompt
-   │
-   ▼
-Local LLM
-   │
-   ▼
-JSON Response
-   │
-   ▼
-Pydantic Validation
-   │
-   ├── Valid ─────► Application
-   │
-   └── Invalid ───► Retry
-```
+<img width="1241" height="1267" alt="image" src="https://github.com/user-attachments/assets/108ac5d8-0bea-48db-b27e-1ee0275bdd40" />
+
 
 This pattern introduces deterministic application boundaries around probabilistic model behavior.
 
@@ -343,29 +329,8 @@ LLMs may occasionally return:
 
 Therefore the application implements a controlled retry.
 
-```text
-LLM Response
-      │
-      ▼
-Validate
-      │
- ┌────┴─────┐
- │          │
-Valid     Invalid
- │          │
- ▼          ▼
-Return    Re-prompt
-             │
-             ▼
-          Validate
-             │
-       ┌─────┴─────┐
-       │           │
-     Valid       Invalid
-       │           │
-       ▼           ▼
-     Return    Fail Gracefully
-```
+<img width="1206" height="1304" alt="image" src="https://github.com/user-attachments/assets/51a7f910-8ddc-44af-980e-37a7e439a699" />
+
 
 The retry prompt can inform the model why the previous response failed.
 
@@ -459,20 +424,7 @@ Instead of selecting a model because it is popular, models should be compared us
 
 Select approximately three models that can realistically run on the target hardware.
 
-```text
-             Golden Prompt Dataset
-                      │
-           ┌──────────┼──────────┐
-           ▼          ▼          ▼
-       Model A     Model B     Model C
-           │          │          │
-           ▼          ▼          ▼
-       Benchmark   Benchmark   Benchmark
-           │          │          │
-           └──────────┼──────────┘
-                      ▼
-                Compare Results
-```
+<img width="1536" height="1024" alt="image" src="https://github.com/user-attachments/assets/dc8fab6c-5eda-4925-82fc-6d4f466b8d01" />
 
 ---
 
