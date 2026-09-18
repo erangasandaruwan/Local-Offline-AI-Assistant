@@ -586,32 +586,8 @@ OpenTelemetry can be introduced to instrument the API and inference pipeline.
 
 The architecture then becomes:
 
-```text
-User
- │
- ▼
-Frontend
- │
- ▼
-ASP.NET Core
- │
- ▼
-FastAPI
- │
- ├──────────────► OpenTelemetry
- │
- ▼
-Validation / Retry
- │
- ▼
-Ollama
- │
- ▼
-Local Model
- │
- ▼
-CPU / GPU
-```
+<img width="1186" height="1326" alt="image" src="https://github.com/user-attachments/assets/d32a7805-cf39-4b40-9468-ae2f914c8904" />
+
 
 This makes it possible to investigate questions such as:
 
