@@ -55,7 +55,7 @@ This project attempts to answer that question through systematic benchmarking an
 
 The initial architecture is:
 
-<img width="1221" height="1289" alt="image" src="https://github.com/user-attachments/assets/983120f4-57ec-4547-970a-b94a9025fca4" />
+<img width="800" height="757" alt="image" src="https://github.com/user-attachments/assets/983120f4-57ec-4547-970a-b94a9025fca4" />
 
 
 The entire LLM inference pipeline can operate without calling an external AI API.
@@ -120,7 +120,7 @@ Running a model through a terminal is useful for experimentation, but production
 
 A lightweight **FastAPI** service can therefore sit between the application and Ollama.
 
-<img width="850" height="832" alt="image" src="https://github.com/user-attachments/assets/f6ed34ea-a078-4b87-aaa7-a0a45fb1d0d8" />
+<img width="750" height="766" alt="image" src="https://github.com/user-attachments/assets/f6ed34ea-a078-4b87-aaa7-a0a45fb1d0d8" />
 
 
 A request could look like:
