@@ -694,31 +694,7 @@ Although Ollama already provides the model API, exposing Ollama directly to the 
 
 A dedicated **Local AI Service** can therefore be introduced as an application layer:
 
-```text
-Application
-     │
-     ▼
-Local AI Service
-   FastAPI
-     │
-     ├── Prompt Management
-     ├── JSON Schema Enforcement
-     ├── Pydantic Validation
-     ├── Retry Handling
-     ├── Model Selection
-     ├── Benchmark Collection
-     ├── Logging
-     └── OpenTelemetry
-     │
-     ▼
-Ollama REST API
-     │
-     ▼
-Local LLM
-     │
-     ▼
-CPU / GPU
-```
+<img width="1205" height="1306" alt="image" src="https://github.com/user-attachments/assets/0b814b6e-7df2-45cd-8904-877fcd7974e2" />
 
 In this architecture, the responsibilities are clearly separated.
 
